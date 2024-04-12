@@ -22,7 +22,7 @@ app.use("/", router);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Urbansoap-BE");
+  res.send("Nodejs-Typescript-template");
 });
 
 // send back a 404 error for any unknown api request

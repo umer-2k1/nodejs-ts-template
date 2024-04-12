@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import User, { IUser } from "../models/User/User";
+import User, { IUser } from "../models/User/user.model";
 import sendMail from "../utils/sendMail";
 import SuccessHandler from "../utils/SuccessHandler";
 import ErrorHandler from "../utils/ErrorHandler";

@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import * as authController from "../controllers/authController";
+import * as authController from "../controllers/auth.controller";
 import isAuthenticated from "../middleware/auth";
 
 const router: Router = express.Router();
@@ -8,13 +8,13 @@ router.route("/logout").get(authController.logout);
 //post
 router.route("/register").post(authController.register);
 router.route("/login").post(authController.login);
-router.route("/requestEmailToken").post(authController.requestEmailToken);
-router.route("/verifyEmail").post(authController.verifyEmail);
-router.route("/forgotPassword").post(authController.forgotPassword);
+router.route("/request-email-token").post(authController.requestEmailToken);
+router.route("/verify-email").post(authController.verifyEmail);
+router.route("/forgot-password").post(authController.forgotPassword);
 
-router.route("/resetPassword").put(authController.resetPassword);
+router.route("/reset-password").put(authController.resetPassword);
 router
-  .route("/updatePassword")
+  .route("/update-password")
   .put(isAuthenticated, authController.updatePassword);
 
 export default router;
