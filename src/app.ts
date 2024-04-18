@@ -6,6 +6,7 @@ import loggerMiddleware from "./middleware/loggerMiddleware";
 import swaggerFile from "../swagger_output.json"; // Generated Swagger file
 import swaggerUi from "swagger-ui-express";
 import router from "./router";
+import { handleInvalidRoute } from "./middleware/invalidRoute";
 
 const app = express();
 // Middlewares
@@ -15,6 +16,7 @@ app.options("*", cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(loggerMiddleware);
+app.use(handleInvalidRoute);
 
 // router index
 app.use("/", router);
