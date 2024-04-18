@@ -7,6 +7,8 @@ import swaggerFile from "../swagger_output.json"; // Generated Swagger file
 import swaggerUi from "swagger-ui-express";
 import router from "./router";
 import { handleInvalidRoute } from "./middleware/invalidRoute";
+import mongoSanitize from "express-mongo-sanitize";
+
 
 const app = express();
 // Middlewares
@@ -17,6 +19,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(loggerMiddleware);
 app.use(handleInvalidRoute);
+
+// Apply mongoSanitize middleware
+app.use(mongoSanitize());
+app.use(
+  mongoSanitize({
+    replaceWith: "",
+  })
+);
+
 
 // router index
 app.use("/", router);
