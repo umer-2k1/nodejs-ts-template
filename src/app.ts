@@ -8,7 +8,7 @@ import swaggerUi from "swagger-ui-express";
 import router from "./router";
 import { handleInvalidRoute } from "./middleware/invalidRoute";
 import mongoSanitize from "express-mongo-sanitize";
-
+import { rateLimit } from "express-rate-limit";
 
 const app = express();
 // Middlewares
@@ -27,7 +27,6 @@ app.use(
     replaceWith: "",
   })
 );
-
 
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 15 minutes
