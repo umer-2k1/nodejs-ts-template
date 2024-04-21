@@ -6,6 +6,7 @@ import loggerMiddleware from "./middleware/loggerMiddleware";
 import swaggerFile from "../swagger_output.json"; // Generated Swagger file
 import swaggerUi from "swagger-ui-express";
 import router from "./router";
+import { rateLimit } from "express-rate-limit";
 
 const app = express();
 // Middlewares
@@ -16,6 +17,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(loggerMiddleware);
 
+const limiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 15 minutes
+  limit: 1000, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+  // store: ... , // Redis, Memcached, etc. See below.
+  message: "We've received too many request from this IP. Please try later",
+});
+
+// Apply the rate limiting middleware to all requests.
+app.use(limiter);
 // router index
 app.use("/", router);
 // api doc
