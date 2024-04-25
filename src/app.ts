@@ -18,7 +18,6 @@ app.options("*", cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(loggerMiddleware);
-app.use(handleInvalidRoute);
 
 // Apply mongoSanitize middleware
 app.use(mongoSanitize());
@@ -41,6 +40,9 @@ const limiter = rateLimit({
 app.use(limiter);
 // router index
 app.use("/", router);
+// handle invalid route
+app.use(handleInvalidRoute);
+
 // api doc
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

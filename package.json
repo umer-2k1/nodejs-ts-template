@@ -1,5 +1,5 @@
 {
-  "name": "be-boilerplate",
+  "name": "nodejs-ts-template",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/umermemon4648/nodejs-ts-template.git"
   },
-  "author": "ah2k-dev",
+  "author": "umer-memon",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/umermemon4648/nodejs-ts-template/issues"
