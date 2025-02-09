@@ -2,11 +2,11 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import ApiError from "./utils/ApiError";
-import loggerMiddleware from "./middleware/loggerMiddleware";
+import loggerMiddleware from "./middleware/logger.middleware";
 import swaggerFile from "../swagger_output.json"; // Generated Swagger file
 import swaggerUi from "swagger-ui-express";
-import router from "./router";
-import { handleInvalidRoute } from "./middleware/invalidRoute";
+import router from "./routes";
+import { handleInvalidRoute } from "./middleware/invalidRoute.middleware";
 import mongoSanitize from "express-mongo-sanitize";
 import { rateLimit } from "express-rate-limit";
 

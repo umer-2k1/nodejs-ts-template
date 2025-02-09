@@ -1,10 +1,10 @@
 import express, { Router } from "express";
 import * as authController from "../controllers/auth.controller";
-import isAuthenticated from "../middleware/auth";
+import isAuthenticated from "../middleware/auth.middleware";
 
 const router: Router = express.Router();
 //get
-router.route("/logout").get(authController.logout);
+router.route("/logout").post(isAuthenticated, authController.logout);
 //post
 router.route("/register").post(authController.register);
 router.route("/login").post(authController.login);
